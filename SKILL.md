@@ -81,6 +81,36 @@ Go to nuggieai.com/dashboard for a fresh token.
 Update CLAUDE.md and say pm on again.
 Stop.
 
+STEP 3B — Module loading after activation
+
+After the core skill loads from Step 3
+modules will request themselves when needed.
+
+When the loaded skill instructs Claude
+to fetch a module run:
+
+curl -s -H "Authorization: Bearer [TOKEN]" \
+  https://nuggieai.com/api/skill/modules/[MODULE]
+
+Replace [TOKEN] with the same token from Step 1.
+Replace [MODULE] with the module name
+exactly as instructed by the core skill.
+
+Use the Bash tool only — same as Step 2.
+Never use WebFetch for module fetches.
+Cache each loaded module for the session.
+Never re-fetch a module already loaded.
+
+If module returns 403:
+Print: [module] requires PM Vibe Pro.
+Visit nuggieai.com/dashboard to upgrade.
+Continue without that module.
+
+If module returns empty or error:
+Print: Could not load [module] —
+continuing without it.
+Continue — never block on a module failure.
+
 ---
 This file is the installer only.
 All PM Vibe features live at nuggieai.com.
