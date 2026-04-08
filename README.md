@@ -1,0 +1,287 @@
+# PM Vibe
+
+> Project manager and bug prevention for vibe coders.
+
+PM Vibe is a Claude Code skill that runs your project and protects it at the same time. You describe what you want — PM Vibe handles the planning, the security scanning, the saves, and the rollbacks.
+
+Free to install. Free forever for core features. Pro features included free for 30 days.
+
+---
+
+## Install
+
+**One command — works on Mac and Linux:**
+
+```bash
+mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/pm-vibe/main/SKILL.md
+```
+
+**Windows:**
+```
+mkdir %USERPROFILE%\.claude\skills\pm-vibe
+```
+Then download `SKILL.md` from this repo and move it to that folder.
+
+---
+
+## Setup
+
+**1. Get your free token**
+Create a free account at [nuggieai.com](https://nuggieai.com) and copy your skill token from the dashboard.
+
+**2. Add token to your project**
+Add this line to your project `CLAUDE.md` file:
+```
+skill_token: nvsk_free_xxxxxxxxxxxxxxxxxxxx
+```
+Replace with your actual token. Space after the colon. No quotes.
+
+**3. Activate**
+In Claude Code type:
+```
+pm on
+```
+
+That's it. PM Vibe activates and prints a confirmation table.
+
+---
+
+## How it works
+
+When you say `pm on`, this installer file tells Claude to:
+1. Read your token from `CLAUDE.md`
+2. Fetch the full skill from `nuggieai.com/api/skill/pm-vibe`
+3. Load it into the session
+
+The skill content lives on nuggieai.com servers — not on your machine. This means updates happen automatically and your IP is protected.
+
+---
+
+## Core Features
+
+Always on from the moment you say `pm on`.
+
+### pm prompt
+Intercepts every request before code runs. Two Claude roles work in a feedback loop — one builds a complete spec, one executes. Scans your files, calculates confidence, and asks at most one clarifying question before building. Detects multi-task requests and queues them one at a time.
+
+**What you see:**
+```
+scanning files... ✓
+confidence: 87% ✓
+TASK: Add login page
+FILES: src/pages/Login.jsx, src/routes/auth.py
+CHANGE: Create login form, add POST /auth/login route
+LEAVE ALONE: existing user session logic
+→ build mode: feature — building in isolation
+```
+
+---
+
+### pm global
+Maintains `globals.json` as the single source of truth for every color, font, spacing value, and shared variable in your project. Enforces token usage on every edit. Runs a consolidation pass at session start to merge duplicates.
+
+**Why it matters:** Without this, the same color gets defined in 12 different files and changing your brand color becomes a 2-hour job.
+
+---
+
+### pm scan
+Routes every request to the right build mode before execution. Modes: focused, search, rebuild, connect. Checks if an edit touches a security surface and loads pm guard automatically. Checks CLAUDE.md line count and loads pm claudemd when it gets too long.
+
+**Build modes:**
+| Mode | When | What |
+|---|---|---|
+| surgical | "fix the button" | Touch only that exact thing |
+| search | "nothing is working" | Scan all files |
+| rebuild | "start over on auth" | Rebuild from scratch |
+| connect | "wire the login to the API" | Connect existing pieces |
+
+---
+
+### pm revert
+Logs every prompt in plain English to `CHANGELOG.txt`. Writes a 3-word save header every 5 prompts tagged `[pm]`. Go back any number of prompts with one command. Always confirms before restoring.
+
+**Commands:**
+```
+pm go back              → restore to last prompt
+pm go back 3            → restore 3 prompts ago  
+pm go back to login     → search changelog and restore
+pm history              → view full changelog
+save                    → manual save now
+save as [name]          → manual save with custom name
+```
+
+---
+
+## Modules
+
+Load on demand. PM Vibe suggests them as you build.
+
+### Free forever
+
+**pm standup** — on demand session summary
+```
+pm standup
+```
+Shows what got built, what needs fixing, what to do next session. Includes security score if pm guard is loaded. Ends with a shareable plain English paragraph.
+
+**pm scope** — keeps session focused
+```
+pm scope on
+```
+Set a focus boundary for the session. PM Vibe flags anything outside it and offers to park ideas for later.
+
+**pm map** — auto-assigns nicknames
+Loads automatically at session start. Scans your project and creates short nicknames for every file and component. Silently expands nicknames in every request before pm prompt runs.
+```
+pm map show             → see all nicknames
+pm map set x to y       → override a nickname
+```
+
+---
+
+### Free for 30 days — then Pro ($0.99/month)
+
+**pm guard** — 16-check security scan
+Runs automatically via pm scan. Checks for:
+- Exposed API keys and passwords
+- Open database routes with no auth
+- Missing error states on forms and fetches
+- Plain text passwords
+- SQL injection vulnerabilities
+- XSS — user input rendered without escaping
+- Hardcoded URLs
+- Schema conflicts
+- Debug mode left on
+- CORS set to wildcard
+- Sensitive data in localStorage
+- No rate limiting on login endpoints
+- Unvalidated file uploads
+- Over-fetching in API responses
+- No session expiry on tokens
+- No HTTPS enforcement
+
+Tracks a 0–100 security score. Auto-fixes what it can. Auto-prompts a fix when score drops below 75.
+
+---
+
+**pm style** — catches styles that won't show up
+Runs on every edit that touches a style file. Finds rules being silently overwritten, class name typos, and missing variables. Plain English only.
+
+---
+
+**pm connect** — diagnoses broken connections
+```
+pm connect
+```
+Finds field name mismatches, missing endpoints, wrong data formats between frontend and backend. Auto-loads when pm scan detects a connect mode request.
+
+---
+
+**pm claudemd** — keeps CLAUDE.md lean
+Auto-loads when CLAUDE.md hits 100 lines. Audits for duplicates, outdated references, and anything already in globals.json. Restructures so critical context loads first. Never rewrites without confirmation.
+
+---
+
+**pm branch** — folder-based branching
+```
+pm branch [name]        → create isolated copy of project
+pm branches             → list all branches
+pm switch [name]        → switch to branch
+pm merge [name]         → merge branch into main
+```
+Uses CHANGELOG.txt as the merge instruction set. Runs a full 24-check error scan on every merge.
+
+---
+
+**pm merge** — prevents Vercel function limit errors
+Watches your `api/` folder in the background. Warns at 10 functions. Automatically proposes how to consolidate before you hit the 12 function cap — groups related endpoints and updates every fetch call across the project.
+
+---
+
+## Full Command Reference
+
+```
+pm on / /pm             activate
+pm off                  stop everything
+pm status               print current feature table
+pm / pm help            show all commands
+
+save                    manual save with 3-word header
+save as [name]          manual save with custom name
+pm go back              restore to last prompt
+pm go back [N]          restore N prompts ago
+pm go back to [phrase]  search changelog and restore
+pm history              view full changelog
+pm history [N]          view last N entries
+
+pm style on/off         toggle style checking
+pm standup              session summary
+pm scope on/off         toggle scope guard
+pm map show             print nickname map
+pm map set [x] to [y]   set nickname
+pm map remove [x]       remove nickname
+pm map reset            regenerate auto nicknames
+pm connect              diagnose broken connections
+pm connect map          print connection map
+pm branch [name]        create branch
+pm branches             list branches
+pm switch [name]        switch to branch
+pm switch main          switch to main
+pm merge [name]         merge branch
+pm merge on             enable Vercel limit monitoring
+```
+
+---
+
+## Tiers
+
+| Feature | Free | Trial (30 days) | Pro $0.99/mo |
+|---|---|---|---|
+| pm prompt | ✓ | ✓ | ✓ |
+| pm global | ✓ | ✓ | ✓ |
+| pm scan | ✓ | ✓ | ✓ |
+| pm revert | ✓ | ✓ | ✓ |
+| pm standup | ✓ | ✓ | ✓ |
+| pm scope | ✓ | ✓ | ✓ |
+| pm map | ✓ | ✓ | ✓ |
+| pm guard | — | ✓ | ✓ |
+| pm style | — | ✓ | ✓ |
+| pm connect | — | ✓ | ✓ |
+| pm claudemd | — | ✓ | ✓ |
+| pm branch | — | ✓ | ✓ |
+| pm merge | — | ✓ | ✓ |
+
+Upgrade at [nuggieai.com/dashboard](https://nuggieai.com/dashboard)
+
+---
+
+## FAQ
+
+**Do I need to reinstall when PM Vibe updates?**
+No. The skill content lives on nuggieai.com servers. Every time you say `pm on` you get the latest version automatically. The installer file in `~/.claude/skills/pm-vibe/SKILL.md` never needs to be updated.
+
+**Can I use the same token in multiple projects?**
+Yes. Add the same `skill_token:` line to any project CLAUDE.md. Works simultaneously across unlimited projects.
+
+**Do I need to reinstall on a new machine?**
+Run the one-line install command on the new machine. Add your token to CLAUDE.md. Say `pm on`. Done.
+
+**What happens after my 30 day trial?**
+pm standup, pm scope, and pm map stay free forever. pm guard, pm style, pm connect, pm claudemd, pm branch, and pm merge require Pro at $0.99/month.
+
+**How do I get my token?**
+Create a free account at [nuggieai.com](https://nuggieai.com) and go to your dashboard.
+
+---
+
+## License
+
+MIT — this installer file is free to share, fork, and modify.
+
+The skill content served from nuggieai.com is proprietary and licensed separately.
+
+---
+
+## Built by
+
+Christine Zhang — [nuggieai.com](https://nuggieai.com)
