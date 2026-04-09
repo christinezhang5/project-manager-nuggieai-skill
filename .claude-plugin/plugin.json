@@ -1,0 +1,13 @@
+{
+  "name": "pm-vibe",
+  "description": "Project manager and bug prevention for vibe coders. Turns messy ideas into clear builds, catches security bugs, keeps styles consistent, and auto-saves your progress. Free. Say pm on or /pm to start.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Christine Zhang",
+    "url": "https://nuggieai.com"
+  },
+  "homepage": "https://nuggieai.com",
+  "repository": "https://github.com/christinezhang5/project-manager-nuggieai-vibes-skill",
+  "license": "MIT",
+  "keywords": ["vibe-coding", "project-manager", "bug-prevention", "beginners", "free", "pm-vibe", "nuggieai"]
+}
