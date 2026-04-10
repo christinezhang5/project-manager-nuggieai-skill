@@ -1,0 +1,55 @@
+PM Vibe — Skills Reference
+===========================
+
+CORE (always on, free forever)
+------------------------------
+
+pm prompt
+  Turns vague ideas into structured build specs before any code runs.
+  Three-round confidence loop, five build modes, multi-task splitting.
+
+pm scan
+  Lightweight post-build security scorer and build mode router.
+  Runs after every build — loads pm guard automatically when score drops below 75.
+
+pm revert
+  Plain English version control without git.
+  Auto-saves every 5 prompts, go back by number or description, manual checkpoints.
+
+FREE MODULES (free forever)
+----------------------------
+
+pm standup
+  Session summary in plain English with zero jargon.
+  Shows what you built, what needs fixing, what to do next, plus a shareable paragraph.
+
+pm scope
+  Focus guard that prevents scope creep during a session.
+  Nudges when you drift, parks off-topic ideas for your standup summary.
+
+pm map
+  Auto-generates short nicknames for every file in your project.
+  Say the nickname and PM Vibe knows which file you mean. Loads at session start.
+
+pm style
+  CSS conflict detector and style consistency enforcer.
+  Catches overwrites, orphaned class names, and missing CSS variables.
+
+pm merge
+  Vercel serverless function consolidator.
+  Watches API file count, warns at 10-11, auto-consolidates at the 12-file limit.
+
+PRO MODULES (30-day free trial, then $0.99/mo)
+-----------------------------------------------
+
+pm guard
+  Deep 18-point security audit with 0-100 scoring and auto-fix.
+  Seven checks fix silently, eleven flag with plain English questions.
+
+pm connect
+  Frontend-to-backend connection debugger.
+  Diagnoses URL mismatches, wrong data shapes, missing auth, and env config issues.
+
+pm claudemd
+  CLAUDE.md optimizer that trims PM-generated content.
+  Removes duplicates and outdated context while protecting everything you wrote.
