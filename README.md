@@ -10,17 +10,36 @@ Free to install. Free forever for core features. Pro features included free for 
 
 ## Install
 
-**One command — works on Mac and Linux:**
+Three ways to install — pick one.
+
+### Option A: Claude Code (manual skill)
+
+One command — works on Mac and Linux:
 
 ```bash
-mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/pm-vibe/main/SKILL.md
+mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-vibes-skill/main/SKILL.md
 ```
 
-**Windows:**
+Windows:
 ```
 mkdir %USERPROFILE%\.claude\skills\pm-vibe
 ```
 Then download `SKILL.md` from this repo and move it to that folder.
+
+### Option B: Claude Code Plugin
+
+Clone the repo and run Claude Code with the `--plugin-dir` flag:
+
+```bash
+git clone https://github.com/christinezhang5/project-manager-nuggieai-vibes-skill.git ~/.claude/plugins/pm-vibe
+claude --plugin-dir ~/.claude/plugins/pm-vibe
+```
+
+This uses the official Claude Code plugin system. Skills are namespaced as `/pm-vibe:pm-vibe`.
+
+### Option C: GitHub Copilot
+
+PM Vibe works in GitHub Copilot (VS Code) in agent mode with Claude as the model. Instead of `CLAUDE.md`, add your token to `.github/copilot-instructions.md`. Select Claude Sonnet in the Copilot model picker and make sure you're in Agent mode.
 
 ---
 
@@ -30,14 +49,14 @@ Then download `SKILL.md` from this repo and move it to that folder.
 Create a free account at [nuggieai.com](https://nuggieai.com) and copy your skill token from the dashboard.
 
 **2. Add token to your project**
-Add this line to your project `CLAUDE.md` file:
+Add this line to your project `CLAUDE.md` (or `.github/copilot-instructions.md` for Copilot):
 ```
 skill_token: nvsk_free_xxxxxxxxxxxxxxxxxxxx
 ```
 Replace with your actual token. Space after the colon. No quotes.
 
 **3. Activate**
-In Claude Code type:
+In Claude Code (or Copilot agent chat) type:
 ```
 pm on
 ```
@@ -238,18 +257,16 @@ pm merge on             enable Vercel limit monitoring
 | Feature | Free | Trial (30 days) | Pro $0.99/mo |
 |---|---|---|---|
 | pm prompt | ✓ | ✓ | ✓ |
-| pm global | ✓ | ✓ | ✓ |
 | pm scan | ✓ | ✓ | ✓ |
 | pm revert | ✓ | ✓ | ✓ |
 | pm standup | ✓ | ✓ | ✓ |
 | pm scope | ✓ | ✓ | ✓ |
 | pm map | ✓ | ✓ | ✓ |
+| pm style | ✓ | ✓ | ✓ |
+| pm merge | ✓ | ✓ | ✓ |
 | pm guard | — | ✓ | ✓ |
-| pm style | — | ✓ | ✓ |
 | pm connect | — | ✓ | ✓ |
 | pm claudemd | — | ✓ | ✓ |
-| pm branch | — | ✓ | ✓ |
-| pm merge | — | ✓ | ✓ |
 
 Upgrade at [nuggieai.com/dashboard](https://nuggieai.com/dashboard)
 
@@ -258,16 +275,19 @@ Upgrade at [nuggieai.com/dashboard](https://nuggieai.com/dashboard)
 ## FAQ
 
 **Do I need to reinstall when PM Vibe updates?**
-No. The skill content lives on nuggieai.com servers. Every time you say `pm on` you get the latest version automatically. The installer file in `~/.claude/skills/pm-vibe/SKILL.md` never needs to be updated.
+No. The skill content lives on nuggieai.com servers. Every time you say `pm on` you get the latest version automatically. The installer file never needs to be updated.
 
 **Can I use the same token in multiple projects?**
 Yes. Add the same `skill_token:` line to any project CLAUDE.md. Works simultaneously across unlimited projects.
 
 **Do I need to reinstall on a new machine?**
-Run the one-line install command on the new machine. Add your token to CLAUDE.md. Say `pm on`. Done.
+Run the install command on the new machine (Option A or B above). Add your token to CLAUDE.md. Say `pm on`. Done.
 
-**What happens after my 30 day trial?**
-pm standup, pm scope, and pm map stay free forever. pm guard, pm style, pm connect, pm claudemd, pm branch, and pm merge require Pro at $0.99/month.
+**What's the difference between the skill install and the plugin install?**
+Same thing, different packaging. The skill install (Option A) copies one file. The plugin install (Option B) uses the Claude Code plugin system with `--plugin-dir`. Both fetch the same skill content from nuggieai.com when you say `pm on`.
+
+**What happens after my 30-day trial?**
+pm standup, pm scope, pm map, pm style, and pm merge stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
 
 **How do I get my token?**
 Create a free account at [nuggieai.com](https://nuggieai.com) and go to your dashboard.
