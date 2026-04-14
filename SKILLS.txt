@@ -29,7 +29,11 @@ pm scope
 
 pm map
   Auto-generates short nicknames for every file in your project.
-  Say the nickname and PM Vibe knows which file you mean. Loads at session start.
+  Builds a dependency graph via server-side AST extraction (no install needed).
+  Shows imports, shared tables, shared env vars, and transitive blast radius.
+  God nodes (high-connectivity files) get warnings during builds.
+  Danger zones show which tables/env vars would break the most files if changed.
+  Say pm map show for the full relationship map. Loads at session start.
 
 pm style
   CSS conflict detector and style consistency enforcer.
