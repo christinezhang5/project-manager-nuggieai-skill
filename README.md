@@ -10,9 +10,17 @@ Free to install. Free forever for core features. Pro features included free for 
 
 ## Install
 
-Three ways to install — pick one.
+Four ways to install — pick one.
 
-### Option A: Claude Code (manual skill)
+### Option A: One command (recommended)
+
+```bash
+curl -s https://nuggieai.com/install.sh | bash
+```
+
+Creates your account, generates a token, installs the skill, and adds the token to CLAUDE.md. Done in 10 seconds.
+
+### Option B: Claude Code (manual skill)
 
 One command — works on Mac and Linux:
 
@@ -26,7 +34,7 @@ mkdir %USERPROFILE%\.claude\skills\pm-vibe
 ```
 Then download `SKILL.md` from this repo and move it to that folder.
 
-### Option B: Claude Code Plugin
+### Option C: Claude Code Plugin
 
 Clone the repo and run Claude Code with the `--plugin-dir` flag:
 
