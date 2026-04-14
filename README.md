@@ -149,18 +149,70 @@ pm scope on
 ```
 Set a focus boundary for the session. PM Vibe flags anything outside it and offers to park ideas for later.
 
-**pm map** — auto-assigns nicknames
-Loads automatically at session start. Scans your project and creates short nicknames for every file and component. Silently expands nicknames in every request before pm prompt runs.
+**pm map** — relationship map + nicknames
+Loads automatically at session start. Scans your project, creates short nicknames, and builds a dependency graph via server-side AST extraction — no install needed.
+
+Shows you:
+- Which files import which
+- Which files share database tables (break one, break all)
+- Which files share env vars
+- God nodes (high-connectivity files that ripple when touched)
+- Danger zones (tables/env vars that affect the most files)
+- Drift risks (files that should talk but don't)
+
 ```
-pm map show             → see all nicknames
+pm map show             → full relationship map
+pm map [nickname]       → single file detail
+pm map refresh          → rebuild graph
 pm map set x to y       → override a nickname
 ```
+
+**Example output:**
+```
+PROJECT MAP — myproject
+16 files · 42 edges · 5 communities
+═══════════════════════════════════════
+
+user ──→ validate, verifyAuth, admin-auth, rate              ⚠
+  tables: skill_tokens, user_products, promo_codes
+  env: DATABASE_URL, STRIPE_SECRET_KEY
+
+grant ──→ admin-auth, rate                                    ⚠
+  tables: skill_tokens, user_products, waitlist
+
+chat ──→ rate
+  env: ANTHROPIC_API_KEY
+
+DANGER ZONES
+─────────────────────────────────────
+skill_tokens  ← user, grant, tokens, events, skill   (5 files)
+DATABASE_URL  ← user, grant, events, waitlist, chat   (5 files)
+
+DRIFT RISKS
+─────────────────────────────────────
+admin-auth ↔ verifyAuth — share 2 imports, never connect
+═══════════════════════════════════════
+```
+
+During builds, pm map automatically warns you:
+- `⚠ TABLE: user queries skill_tokens — also touched by: grant, tokens, events`
+- `⚠ BLAST RADIUS: user has 9 edges (12 transitive)`
+
+---
+
+**pm style** — catches styles that won't show up
+Runs on every edit that touches a style file. Finds rules being silently overwritten, class name typos, and missing variables. Plain English only.
+
+---
+
+**pm merge** — prevents Vercel function limit errors
+Watches your `api/` folder in the background. Warns at 10 functions. Automatically proposes how to consolidate before you hit the 12 function cap — groups related endpoints and updates every fetch call across the project.
 
 ---
 
 ### Free for 30 days — then Pro ($0.99/month)
 
-**pm guard** — 16-check security scan
+**pm guard** — 18-check security scan
 Runs automatically via pm scan. Checks for:
 - Exposed API keys and passwords
 - Open database routes with no auth
@@ -183,11 +235,6 @@ Tracks a 0–100 security score. Auto-fixes what it can. Auto-prompts a fix when
 
 ---
 
-**pm style** — catches styles that won't show up
-Runs on every edit that touches a style file. Finds rules being silently overwritten, class name typos, and missing variables. Plain English only.
-
----
-
 **pm connect** — diagnoses broken connections
 ```
 pm connect
@@ -198,22 +245,6 @@ Finds field name mismatches, missing endpoints, wrong data formats between front
 
 **pm claudemd** — keeps CLAUDE.md lean
 Auto-loads when CLAUDE.md hits 100 lines. Audits for duplicates, outdated references, and anything already in globals.json. Restructures so critical context loads first. Never rewrites without confirmation.
-
----
-
-**pm branch** — folder-based branching
-```
-pm branch [name]        → create isolated copy of project
-pm branches             → list all branches
-pm switch [name]        → switch to branch
-pm merge [name]         → merge branch into main
-```
-Uses CHANGELOG.txt as the merge instruction set. Runs a full 24-check error scan on every merge.
-
----
-
-**pm merge** — prevents Vercel function limit errors
-Watches your `api/` folder in the background. Warns at 10 functions. Automatically proposes how to consolidate before you hit the 12 function cap — groups related endpoints and updates every fetch call across the project.
 
 ---
 
@@ -236,7 +267,9 @@ pm history [N]          view last N entries
 pm style on/off         toggle style checking
 pm standup              session summary
 pm scope on/off         toggle scope guard
-pm map show             print nickname map
+pm map show             print relationship map
+pm map [nickname]       single file detail
+pm map refresh          rebuild dependency graph
 pm map set [x] to [y]   set nickname
 pm map remove [x]       remove nickname
 pm map reset            regenerate auto nicknames
