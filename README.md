@@ -231,6 +231,15 @@ One-shot when auto-loaded — ejects after the triggering prompt so it doesn't c
 
 ---
 
+**pm surgical** — strict surgical-mode lock (opposite of pm resolve)
+The opposite-side guardrail to pm resolve. When loaded, blocks pm resolve auto-load entirely — even if you say "fix everything" or pm scan detects a repeated prompt. Locks the mode picker to `surgical` only (no escalation to feature, refactor, redesign, or comprehensive). Caps the spec at one file by default; if pm prompt's confidence loop wants to touch a second file, it asks first.
+
+Use this when you want pm to stay tight — a quick fix, an experimental tweak, a one-line patch — and you don't want a full-tree verification report walking your whole project just because you typed a sweep keyword by reflex.
+
+Manual only — say `pm surgical on` to lock, `pm surgical off` to release. Stays sticky until you toggle it off or `pm off`. Free forever.
+
+---
+
 ### Free for 30 days — then Pro ($0.99/month)
 
 **pm guard** — 18-check security scan
@@ -303,6 +312,7 @@ pm switch main          switch to main
 pm merge [name]         merge branch
 pm merge on             enable Vercel limit monitoring
 pm resolve              full-sweep verify + self-fix (or auto-loads on sweep/regression triggers)
+pm surgical on/off      lock to surgical mode, block pm resolve auto-load
 ```
 
 ---
@@ -320,6 +330,7 @@ pm resolve              full-sweep verify + self-fix (or auto-loads on sweep/reg
 | pm style | ✓ | ✓ | ✓ |
 | pm merge | ✓ | ✓ | ✓ |
 | pm resolve | ✓ | ✓ | ✓ |
+| pm surgical | ✓ | ✓ | ✓ |
 | pm guard | — | ✓ | ✓ |
 | pm connect | — | ✓ | ✓ |
 | pm claudemd | — | ✓ | ✓ |
@@ -343,7 +354,7 @@ Run the install command on the new machine (Option A or B above). Add your token
 Same thing, different packaging. The skill install (Option A) copies one file. The plugin install (Option B) uses the Claude Code plugin system with `--plugin-dir`. Both fetch the same skill content from nuggieai.com when you say `pm on`.
 
 **What happens after my 30-day trial?**
-pm standup, pm scope, pm map, pm style, pm merge, and pm resolve stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
+pm standup, pm scope, pm map, pm style, pm merge, pm resolve, and pm surgical stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
 
 **How do I get my token?**
 Create a free account at [nuggieai.com](https://nuggieai.com) and go to your dashboard.

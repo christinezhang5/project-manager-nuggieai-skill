@@ -54,6 +54,14 @@ pm resolve
   any miss before declaring done. One-shot when auto-loaded — ejects after the
   triggering prompt so it doesn't carry into the next.
 
+pm surgical
+  Strict surgical-mode lock — the opposite of pm resolve. When loaded, blocks
+  pm resolve auto-load, locks mode picker to surgical only, and caps the spec
+  at one file by default. Use when you want a quick tight fix and don't want
+  pm scan auto-loading full-sweep mode if you accidentally type a sweep
+  keyword. Manual only — say `pm surgical on` to load, `pm surgical off` to
+  release.
+
 PRO MODULES (30-day free trial, then $0.99/mo)
 -----------------------------------------------
 
