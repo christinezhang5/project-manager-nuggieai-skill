@@ -25,7 +25,7 @@ Creates your account, generates a token, installs the skill, and adds the token 
 One command — works on Mac and Linux:
 
 ```bash
-mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-vibes-skill/main/SKILL.md
+mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-skill/main/skills/pm-vibe/SKILL.md
 ```
 
 Windows:
@@ -39,7 +39,7 @@ Then download `SKILL.md` from this repo and move it to that folder.
 Clone the repo and run Claude Code with the `--plugin-dir` flag:
 
 ```bash
-git clone https://github.com/christinezhang5/project-manager-nuggieai-vibes-skill.git ~/.claude/plugins/pm-vibe
+git clone https://github.com/christinezhang5/project-manager-nuggieai-skill.git ~/.claude/plugins/pm-vibe
 claude --plugin-dir ~/.claude/plugins/pm-vibe
 ```
 
