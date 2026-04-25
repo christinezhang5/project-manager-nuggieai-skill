@@ -46,6 +46,14 @@ pm merge
   Vercel serverless function consolidator.
   Watches API file count, warns at 10-11, auto-consolidates at the 12-file limit.
 
+pm resolve
+  Full-sweep verification and self-fix loop for sweeping changes and regressions.
+  Auto-loads on triggers like "change everything", "still not working", or when
+  pm scan detects you're asking for the same edit again. Walks change-specific
+  surfaces (renames, removals, additions, replacements, regressions) and fixes
+  any miss before declaring done. One-shot when auto-loaded — ejects after the
+  triggering prompt so it doesn't carry into the next.
+
 PRO MODULES (30-day free trial, then $0.99/mo)
 -----------------------------------------------
 

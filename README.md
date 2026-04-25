@@ -220,6 +220,17 @@ Watches your `api/` folder in the background. Warns at 10 functions. Automatical
 
 ---
 
+**pm resolve** — full-sweep verification and self-fix loop
+Auto-loads when you say things like "change everything", "fix it everywhere", "still not working", or when pm scan notices you're asking for the same edit on the same files again (the strongest signal that the previous attempt didn't take).
+
+Classifies the situation as a rename, removal, addition, replacement, or regression — then runs only the verification surfaces relevant to that pattern (instead of a blanket checklist). For renames it grep-checks every old reference against your in-scope/out-of-scope DATA-KEY BOUNDARIES. For regressions it reads CHANGELOG + last 5 saves to find the suspected breaking change, reproduces the failure, and walks the surfaces around the break point.
+
+Self-fixes every issue it finds, re-runs verification, repeats until zero issues. Only escalates genuinely ambiguous calls (like "is this string a DB key or display text?"). Always shows a verification report splitting issues Claude fixed on its own from issues that need your call.
+
+One-shot when auto-loaded — ejects after the triggering prompt so it doesn't carry into the next. Manual `pm resolve` stays sticky until `pm off`.
+
+---
+
 ### Free for 30 days — then Pro ($0.99/month)
 
 **pm guard** — 18-check security scan
@@ -291,6 +302,7 @@ pm switch [name]        switch to branch
 pm switch main          switch to main
 pm merge [name]         merge branch
 pm merge on             enable Vercel limit monitoring
+pm resolve              full-sweep verify + self-fix (or auto-loads on sweep/regression triggers)
 ```
 
 ---
@@ -307,6 +319,7 @@ pm merge on             enable Vercel limit monitoring
 | pm map | ✓ | ✓ | ✓ |
 | pm style | ✓ | ✓ | ✓ |
 | pm merge | ✓ | ✓ | ✓ |
+| pm resolve | ✓ | ✓ | ✓ |
 | pm guard | — | ✓ | ✓ |
 | pm connect | — | ✓ | ✓ |
 | pm claudemd | — | ✓ | ✓ |
@@ -330,7 +343,7 @@ Run the install command on the new machine (Option A or B above). Add your token
 Same thing, different packaging. The skill install (Option A) copies one file. The plugin install (Option B) uses the Claude Code plugin system with `--plugin-dir`. Both fetch the same skill content from nuggieai.com when you say `pm on`.
 
 **What happens after my 30-day trial?**
-pm standup, pm scope, pm map, pm style, and pm merge stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
+pm standup, pm scope, pm map, pm style, pm merge, and pm resolve stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
 
 **How do I get my token?**
 Create a free account at [nuggieai.com](https://nuggieai.com) and go to your dashboard.
