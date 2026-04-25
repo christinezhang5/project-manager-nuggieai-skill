@@ -240,6 +240,22 @@ Manual only — say `pm surgical on` to lock, `pm surgical off` to release. Stay
 
 ---
 
+**pm train** — teach your nuggie your preferences
+Manual command for training the active nuggie's "skill file" — a compressed markdown blob server-side that gets loaded alongside the core skill on every future activation. Two modes:
+
+- **Explicit:** `pm train` then dictate preferences in your own words (tone, code style, vocabulary, triggers, permissions allowlist, project context). Claude drafts a section per topic.
+- **Inexplicit:** the same command but you pick option 2 — Claude scans the current session for corrections, repeated patterns, vocabulary, and approved Bash patterns, then drafts sections silently.
+
+Either way Claude compresses the draft and POSTs it to nuggieai.com, which merges it into your nuggie's existing skill_md by `## section header` (incoming sections replace matching ones, others stay). The merged file is also written locally to `~/.claude/skills/pm/nuggie-<name>.md` for reference, and is editable in plain text from the nuggie page on nuggieai.com.
+
+Switch nuggies with `pm train change nuggie`. View the current saved file with `pm train show`.
+
+**Size limits** (enforced server-side on the merged file): free **1 KB**, Pro **8 KB**. The free tier holds the basics; Pro is for elaborate per-project setups.
+
+Free forever.
+
+---
+
 ### Free for 30 days — then Pro ($0.99/month)
 
 **pm guard** — 18-check security scan
@@ -313,6 +329,9 @@ pm merge [name]         merge branch
 pm merge on             enable Vercel limit monitoring
 pm resolve              full-sweep verify + self-fix (or auto-loads on sweep/regression triggers)
 pm surgical on/off      lock to surgical mode, block pm resolve auto-load
+pm train                train active nuggie (explicit or inexplicit mode)
+pm train change nuggie  switch active nuggie before training
+pm train show           print currently-saved skill_md
 ```
 
 ---
@@ -331,6 +350,7 @@ pm surgical on/off      lock to surgical mode, block pm resolve auto-load
 | pm merge | ✓ | ✓ | ✓ |
 | pm resolve | ✓ | ✓ | ✓ |
 | pm surgical | ✓ | ✓ | ✓ |
+| pm train | ✓ | ✓ | ✓ |
 | pm guard | — | ✓ | ✓ |
 | pm connect | — | ✓ | ✓ |
 | pm claudemd | — | ✓ | ✓ |
@@ -354,7 +374,7 @@ Run the install command on the new machine (Option A or B above). Add your token
 Same thing, different packaging. The skill install (Option A) copies one file. The plugin install (Option B) uses the Claude Code plugin system with `--plugin-dir`. Both fetch the same skill content from nuggieai.com when you say `pm on`.
 
 **What happens after my 30-day trial?**
-pm standup, pm scope, pm map, pm style, pm merge, pm resolve, and pm surgical stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
+pm standup, pm scope, pm map, pm style, pm merge, pm resolve, pm surgical, and pm train stay free forever. pm guard, pm connect, and pm claudemd require Pro at $0.99/month.
 
 **How do I get my token?**
 Create a free account at [nuggieai.com](https://nuggieai.com) and go to your dashboard.

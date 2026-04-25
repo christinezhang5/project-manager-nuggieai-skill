@@ -62,6 +62,15 @@ pm surgical
   keyword. Manual only — say `pm surgical on` to load, `pm surgical off` to
   release.
 
+pm train
+  Train your active nuggie with preferences, permissions, vocabulary, and
+  triggers. Two modes: explicit (you tell Claude what to capture) or inexplicit
+  (Claude infers from the current session). Compressed silently and merged
+  into the nuggie's skill_md on nuggieai.com. Auto-loaded into context on
+  every future activation. Edit it later in plain text from the nuggie page
+  on nuggieai.com. Free max 1 KB merged · Pro max 8 KB. Manual only — say
+  `pm train`, `pm train change nuggie`, or `pm train show`.
+
 PRO MODULES (30-day free trial, then $0.99/mo)
 -----------------------------------------------
 
