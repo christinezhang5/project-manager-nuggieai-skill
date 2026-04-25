@@ -91,6 +91,8 @@ Always on from the moment you say `pm on`.
 ### pm prompt
 Intercepts every request before code runs. Two Claude roles work in a feedback loop — one builds a complete spec, one executes. Scans your files, calculates confidence, and asks at most one clarifying question before building. Detects multi-task requests and queues them one at a time.
 
+**Strict boundary rule:** PM Vibe only touches files listed in the spec. No drive-by refactors, no "while I'm here" cleanup, no adding features you didn't ask for. No renaming variables you didn't mention, no adding comments to code it didn't write, no reformatting untouched lines. The spec is the boundary.
+
 **What you see:**
 ```
 scanning files... ✓
