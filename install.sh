@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# PM Vibe Installer
-# Run this script to install PM Vibe on your machine
+# PM Installer
+# Run this script to install PM on your machine
 # Usage: bash install.sh
 
 echo ""
-echo "Installing PM Vibe..."
+echo "Installing PM..."
 echo ""
 
 # Create skills directory
-mkdir -p ~/.claude/skills/pm-vibe
+mkdir -p ~/.claude/skills/pm
 
 # Download SKILL.md
-curl -s -o ~/.claude/skills/pm-vibe/SKILL.md \
-  https://raw.githubusercontent.com/christinezhang5/pm-vibe/main/SKILL.md
+curl -s -o ~/.claude/skills/pm/SKILL.md \
+  https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-skill/main/skills/pm/SKILL.md
 
 # Confirm
-if [ -f ~/.claude/skills/pm-vibe/SKILL.md ]; then
-  echo "✓ PM Vibe installed at ~/.claude/skills/pm-vibe/SKILL.md"
+if [ -f ~/.claude/skills/pm/SKILL.md ]; then
+  echo "✓ PM installed at ~/.claude/skills/pm/SKILL.md"
   echo ""
   echo "Next steps:"
   echo ""
@@ -33,7 +33,7 @@ else
   echo "✗ Installation failed — check your internet connection and try again"
   echo ""
   echo "Manual install:"
-  echo "mkdir -p ~/.claude/skills/pm-vibe"
-  echo "Download SKILL.md from github.com/christinezhang5/pm-vibe"
-  echo "Move it to ~/.claude/skills/pm-vibe/SKILL.md"
+  echo "mkdir -p ~/.claude/skills/pm"
+  echo "Download SKILL.md from github.com/christinezhang5/project-manager-nuggieai-skill"
+  echo "Move it to ~/.claude/skills/pm/SKILL.md"
 fi

@@ -1,5 +1,5 @@
 ---
-name: pm-vibe
+name: pm
 description: Project manager and bug prevention for vibe coders. Say pm on or /pm to activate. Requires a free account at nuggieai.com.
 ---
 
@@ -8,7 +8,7 @@ description: Project manager and bug prevention for vibe coders. Say pm on or /p
 > with an Authorization header. WebFetch
 > will not work and should not be attempted.
 
-# PM Vibe
+# PM
 
 ## When user says pm on or /pm or start pm or enable pm
 
@@ -21,7 +21,7 @@ Extract the full token value.
 
 If no skill_token line exists print this and stop:
 
-PM Vibe needs a token to activate.
+PM needs a token to activate.
 Get yours free at nuggieai.com/dashboard
 Add this to your CLAUDE.md:
 skill_token: nvsk_free_xxxxxxxxxxxxxxxxxxxx
@@ -37,7 +37,7 @@ and will always return 401. Skip it entirely.
 Use the Bash tool to run this exact command:
 
 curl -s -H "Authorization: Bearer [TOKEN]" \
-  https://nuggieai.com/api/skill/pm-vibe
+  https://nuggieai.com/api/skill/pm
 
 Replace [TOKEN] with the exact token value
 read from CLAUDE.md in Step 1.
@@ -49,12 +49,12 @@ The -s flag suppresses progress noise.
 If the Bash tool is not available try:
 wget -q -O - \
   --header="Authorization: Bearer [TOKEN]" \
-  https://nuggieai.com/api/skill/pm-vibe
+  https://nuggieai.com/api/skill/pm
 
 Do not attempt WebFetch under any circumstances.
 Do not attempt any other HTTP method.
 If neither curl nor wget is available print:
-PM Vibe requires curl to activate.
+PM requires curl to activate.
 Install curl and try pm on again.
 Then stop.
 
@@ -67,7 +67,7 @@ Do not print the response content.
 Do not print anything about the fetch.
 
 If response is empty or contains an error:
-Print: PM Vibe could not connect.
+Print: PM could not connect.
 Check internet and try pm on again.
 Stop.
 
@@ -98,7 +98,7 @@ Cache each loaded module for the session.
 Never re-fetch a module already loaded.
 
 If module returns 403:
-Print: [module] requires PM Vibe Pro.
+Print: [module] requires PM Pro.
 Visit nuggieai.com/dashboard to upgrade.
 Continue without that module.
 
@@ -109,6 +109,6 @@ Continue — never block on a module failure.
 
 ---
 This file is the installer only.
-All PM Vibe features live at nuggieai.com.
+All PM features live at nuggieai.com.
 Nothing in this file is proprietary.
 ---

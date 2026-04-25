@@ -1,5 +1,5 @@
 {
-  "name": "pm-vibe",
+  "name": "pm",
   "description": "Project manager for AI-assisted development. Structures every build, catches bugs before they ship, only touches files you ask it to. Free. Say pm on to start.",
   "version": "1.1.0",
   "author": {
@@ -12,5 +12,5 @@
     "url": "https://github.com/christinezhang5/project-manager-nuggieai-skill"
   },
   "license": "MIT",
-  "keywords": ["project-manager", "bug-prevention", "ai-coding", "claude-code", "free", "pm-vibe", "nuggieai"]
+  "keywords": ["project-manager", "bug-prevention", "ai-coding", "claude-code", "free", "pm", "nuggieai"]
 }

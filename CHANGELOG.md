@@ -1,11 +1,11 @@
 # Changelog
 
-All notable changes to the PM Vibe installer.
+All notable changes to the PM installer.
 
 ## [1.0.0] — April 2026
 
 ### Added
-- Initial release of PM Vibe installer
+- Initial release of PM installer
 - Token-based authentication via nuggieai.com
 - Fetches full skill content from server on activation
 - Supports pm on and /pm activation triggers
@@ -13,5 +13,5 @@ All notable changes to the PM Vibe installer.
 - install.sh script for one-command setup on Mac and Linux
 
 ### How it works
-The installer is a thin file that tells Claude where to fetch PM Vibe from.
+The installer is a thin file that tells Claude where to fetch PM from.
 All skill logic lives on nuggieai.com — updates are automatic.

@@ -1,8 +1,8 @@
-# PM Vibe
+# PM
 
 > Project manager and bug prevention for vibe coders.
 
-PM Vibe is a Claude Code skill that runs your project and protects it at the same time. You describe what you want — PM Vibe handles the planning, the security scanning, the saves, and the rollbacks.
+PM is a Claude Code skill that runs your project and protects it at the same time. You describe what you want — PM handles the planning, the security scanning, the saves, and the rollbacks.
 
 Free to install. Free forever for core features. Pro features included free for 30 days.
 
@@ -25,12 +25,12 @@ Creates your account, generates a token, installs the skill, and adds the token 
 One command — works on Mac and Linux:
 
 ```bash
-mkdir -p ~/.claude/skills/pm-vibe && curl -o ~/.claude/skills/pm-vibe/SKILL.md https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-skill/main/skills/pm-vibe/SKILL.md
+mkdir -p ~/.claude/skills/pm && curl -o ~/.claude/skills/pm/SKILL.md https://raw.githubusercontent.com/christinezhang5/project-manager-nuggieai-skill/main/skills/pm/SKILL.md
 ```
 
 Windows:
 ```
-mkdir %USERPROFILE%\.claude\skills\pm-vibe
+mkdir %USERPROFILE%\.claude\skills\pm
 ```
 Then download `SKILL.md` from this repo and move it to that folder.
 
@@ -39,15 +39,15 @@ Then download `SKILL.md` from this repo and move it to that folder.
 Clone the repo and run Claude Code with the `--plugin-dir` flag:
 
 ```bash
-git clone https://github.com/christinezhang5/project-manager-nuggieai-skill.git ~/.claude/plugins/pm-vibe
-claude --plugin-dir ~/.claude/plugins/pm-vibe
+git clone https://github.com/christinezhang5/project-manager-nuggieai-skill.git ~/.claude/plugins/pm
+claude --plugin-dir ~/.claude/plugins/pm
 ```
 
-This uses the official Claude Code plugin system. Skills are namespaced as `/pm-vibe:pm-vibe`.
+This uses the official Claude Code plugin system. Skills are namespaced as `/pm:pm`.
 
 ### Option C: GitHub Copilot
 
-PM Vibe works in GitHub Copilot (VS Code) in agent mode with Claude as the model. Instead of `CLAUDE.md`, add your token to `.github/copilot-instructions.md`. Select Claude Sonnet in the Copilot model picker and make sure you're in Agent mode.
+PM works in GitHub Copilot (VS Code) in agent mode with Claude as the model. Instead of `CLAUDE.md`, add your token to `.github/copilot-instructions.md`. Select Claude Sonnet in the Copilot model picker and make sure you're in Agent mode.
 
 ---
 
@@ -69,7 +69,7 @@ In Claude Code (or Copilot agent chat) type:
 pm on
 ```
 
-That's it. PM Vibe activates and prints a confirmation table.
+That's it. PM activates and prints a confirmation table.
 
 ---
 
@@ -77,7 +77,7 @@ That's it. PM Vibe activates and prints a confirmation table.
 
 When you say `pm on`, this installer file tells Claude to:
 1. Read your token from `CLAUDE.md`
-2. Fetch the full skill from `nuggieai.com/api/skill/pm-vibe`
+2. Fetch the full skill from `nuggieai.com/api/skill/pm`
 3. Load it into the session
 
 The skill content lives on nuggieai.com servers — not on your machine. This means updates happen automatically and your IP is protected.
@@ -91,7 +91,7 @@ Always on from the moment you say `pm on`.
 ### pm prompt
 Intercepts every request before code runs. Two Claude roles work in a feedback loop — one builds a complete spec, one executes. Scans your files, calculates confidence, and asks at most one clarifying question before building. Detects multi-task requests and queues them one at a time.
 
-**Strict boundary rule:** PM Vibe only touches files listed in the spec. No drive-by refactors, no "while I'm here" cleanup, no adding features you didn't ask for. No renaming variables you didn't mention, no adding comments to code it didn't write, no reformatting untouched lines. The spec is the boundary.
+**Strict boundary rule:** PM only touches files listed in the spec. No drive-by refactors, no "while I'm here" cleanup, no adding features you didn't ask for. No renaming variables you didn't mention, no adding comments to code it didn't write, no reformatting untouched lines. The spec is the boundary.
 
 **What you see:**
 ```
@@ -143,7 +143,7 @@ save as [name]          → manual save with custom name
 
 ## Modules
 
-Load on demand. PM Vibe suggests them as you build.
+Load on demand. PM suggests them as you build.
 
 ### Free forever
 
@@ -157,7 +157,7 @@ Shows what got built, what needs fixing, what to do next session. Includes secur
 ```
 pm scope on
 ```
-Set a focus boundary for the session. PM Vibe flags anything outside it and offers to park ideas for later.
+Set a focus boundary for the session. PM flags anything outside it and offers to park ideas for later.
 
 **pm map** — relationship map + nicknames
 Loads automatically at session start. Scans your project, creates short nicknames, and builds a dependency graph via server-side AST extraction — no install needed.
@@ -317,7 +317,7 @@ Upgrade at [nuggieai.com/dashboard](https://nuggieai.com/dashboard)
 
 ## FAQ
 
-**Do I need to reinstall when PM Vibe updates?**
+**Do I need to reinstall when PM updates?**
 No. The skill content lives on nuggieai.com servers. Every time you say `pm on` you get the latest version automatically. The installer file never needs to be updated.
 
 **Can I use the same token in multiple projects?**
