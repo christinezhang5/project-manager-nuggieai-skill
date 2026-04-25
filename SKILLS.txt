@@ -7,6 +7,8 @@ CORE (always on, free forever)
 pm prompt
   Turns vague ideas into structured build specs before any code runs.
   Three-round confidence loop, five build modes, multi-task splitting.
+  Strict boundary rule: only touches files in the spec. No drive-by refactors,
+  no cleanup of code you didn't ask about, no features that weren't requested.
 
 pm scan
   Lightweight post-build security scorer and build mode router.
