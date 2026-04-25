@@ -15,8 +15,9 @@ pm scan
   Runs after every build — loads pm guard automatically when score drops below 75.
 
 pm revert
-  Plain English version control without git.
-  Auto-saves every 5 prompts, go back by number or description, manual checkpoints.
+  Three things Claude can't do on its own: auto-saves every 5 prompts so you
+  never lose work, search-by-description undo ("go back to when login worked"),
+  and named checkpoints ("save as auth-working") to bookmark known-good states.
 
 FREE MODULES (free forever)
 ----------------------------
